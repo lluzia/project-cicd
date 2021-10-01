@@ -1,9 +1,5 @@
 version: 2.1
 
-workflows:
-  test-env-vars:
-    jobs:
-      - build
 
 jobs:
   build:
@@ -12,6 +8,33 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "echo an env var that is part of our project"
+          name: "echo project username"
           command: |
             echo $CIRCLE_PROJECT_USERNAME
+
+  save_word_output:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: echo "He is Carl" > ~/output.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - output.txt
+
+  print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+        at: ~/
+      - run: cat ~/output.txt
+
+workflows:
+  project-workflows:
+    jobs:
+      - build
+      - save_word_output
+      - print_output_file:
+          requires:
+            - save_word_output
