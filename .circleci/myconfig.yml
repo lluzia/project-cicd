@@ -1,0 +1,53 @@
+version: 2.1
+
+commands:
+  print_job_name:
+    steps:
+      - run: echo $CIRCLE_JOB
+
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - checkout
+      - run:
+          name: "echo project username"
+          command: |
+            echo $CIRCLE_PROJECT_USERNAME
+
+  save_word_output:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: echo "He is Carl" > ~/output.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - output.txt
+
+  print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/output.txt
+  
+  print_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - print_job_name
+  
+
+workflows:
+  project-workflows:
+    jobs:
+      - build
+      - save_word_output
+      - print_output_file:
+          requires:
+            - save_word_output
+      - print_job
