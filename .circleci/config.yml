@@ -15,20 +15,20 @@ jobs:
       - checkout
       - run: npm i
       - run: npm run test
-  analyze:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - run: npm audit
+  # analyze:
+  #   docker:
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - checkout
+  #     - run: npm audit
 
 workflows:
-  my_workflow:
+  project_workflow:
     jobs:
       - build
       - test:
           requires:
             - build
-      - analyze:
-          requires:
-            - test
+      # - analyze:
+      #     requires:
+      #       - test
