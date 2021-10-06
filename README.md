@@ -2,8 +2,8 @@
   <img src="https://cloud.githubusercontent.com/assets/3129129/22811426/bb69dc06-ef0c-11e6-8092-a0bea9060b35.png"/>
 </p>
 
---
-[![Build Status: CircleCI](https://circleci.com/gh/lluzia/project-cicd/tree/master.svg?style=svg)](https://circleci.com/gh/lluzia/project-cicd/tree/master)
+
+[![Build Status: CircleCI](https://circleci.com/gh/lluzia/project-cicd/tree/master.svg?style=shield)](https://circleci.com/gh/lluzia/project-cicd/tree/master)
 
 [![CircleCI](https://circleci.com/gh/lluzia/project-cicd/tree/master.svg?style=shield)](https://circleci.com/gh/lluzia/project-cicd/tree/master)
 
