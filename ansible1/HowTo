@@ -1,0 +1,15 @@
+1) create a ansible dir;
+2) create a roles dir;
+    2.2 create a print dir;
+    2.3 creat a tasks dir;
+        2.3.1 create a main.yml
+3) create a playbook file = main.yml
+4) run ansible-playbook main.yml
+5) start a ec2 instance on AWS env (try spot instance first for saving cost)
+6) create a inventory file 
+    echo "[all]" > inventory
+7) query and save the instance ip public address into the inventory file   
+    aws ec2 describe-instances \
+   --query 'Reservations[*].Instances[*].PublicIpAddress' \
+   --output text >> inventory
+   
