@@ -29,12 +29,6 @@ jobs:
       - checkout
       - run: npm i
       - run: npm run test
-  # analyze:
-  #   docker:
-  #     - image: circleci/node:13.8.0
-  #   steps:
-  #     - checkout
-  #     - run: npm audit
 
   # Infrastructure Creation
   # Rollback
@@ -54,6 +48,7 @@ jobs:
       # Uncomment the line below if you want to fail the current step
       # - run: return 1
       - destroy_environment
+
 workflows:
   project_workflow:
     jobs:
@@ -64,4 +59,4 @@ workflows:
       # - analyze:
       #     requires:
       #       - test
-      - create-infrastructure
+      - create_infrastructure
